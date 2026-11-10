@@ -67,18 +67,11 @@ Fill in the **Playoffs** tab: `Division | Round | Game | Team A | Score A | Team
   Score B yourself only to override.
 - The bracket appears on the Standings page as soon as this tab has rows. The final's winner is shown as Champion.
 
-## 7. Add a sponsor
-
-1. Upload the sponsor's logo picture to GitHub (same folder, simple name like `sponsor-joes-pizza.png`).
-2. In config.js, under `sponsors:`, copy the example line, remove the `//` at its start and fill in name, website and logo file name.
-
-The "Presented by" strip on the home page appears automatically once there is a sponsor.
-
-## 8. Change a setting
+## 7. Change a setting
 
 Open **config.js**. Every setting has a note above it. Change only the text inside the quote marks and
 keep the commas. Dates are written `YYYY-MM-DD`. Things you'll likely change: fee, deadline, registration
-form link, divisions, maximum teams, diamond addresses, rules, FAQ and sponsorship packages.
+form link, divisions, maximum teams, diamond addresses, rules, and FAQ.
 
 To replace the logo, upload your picture (e.g. `logo.png`) and change `logo: "logo.svg"` to `logo: "logo.png"`.
 (The small icons `favicon.png`, `apple-touch-icon.png` and the sharing picture `og-image.png` are made from
@@ -88,7 +81,7 @@ the placeholder logo; replace them with versions of your logo when you have one.
 
 | File | What it is |
 | --- | --- |
-| index.html, schedule.html, standings.html, teams.html, register.html, sponsors.html, info.html | The 7 pages (no need to edit) |
+| index.html, schedule.html, standings.html, teams.html, register.html, info.html | The 6 pages (no need to edit) |
 | config.js | **Your settings** |
 | style.css | Look and colours (colours are at the top) |
 | site.js, league.js, pages.js | The workings (no need to edit) |

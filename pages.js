@@ -17,8 +17,6 @@
   function home() {
     var first = L.configDayKey(C.firstGameDay), lastReg = L.configDayKey(C.lastRegularSeasonDay);
     var divNames = (C.divisions || []).join(", ") || "To be announced";
-    var sponsors = (C.sponsors || []).filter(function (s) { return s && s.name; });
-
     main.innerHTML =
       '<section class="hero"><div class="wrap hero-inner">' +
         '<div class="hero-text">' +
@@ -36,14 +34,7 @@
         fact("Divisions", esc(divNames)) +
         fact("Registration deadline", esc(Site.shortDate(C.registrationDeadline))) +
       "</dl>" +
-      '<div class="actions"><a class="btn btn-primary" href="register.html">Register a team</a>' +
-      '<a class="btn btn-outline" href="sponsors.html">Become a sponsor</a></div></section>' +
-
-      (sponsors.length ? '<section class="wrap section presented"><p class="eyebrow">Presented by</p><ul class="logo-strip">' +
-        sponsors.map(function (s) {
-          var img = s.logo ? '<img src="' + esc(s.logo) + '" alt="' + esc(s.name) + '">' : '<span class="logo-name">' + esc(s.name) + "</span>";
-          return "<li>" + (s.website ? '<a href="' + esc(s.website) + '" rel="noopener" target="_blank">' + img + "</a>" : img) + "</li>";
-        }).join("") + "</ul></section>" : "") +
+      '<div class="actions"><a class="btn btn-primary" href="register.html">Register a team</a></div></section>' +
 
       '<section class="wrap section"><p class="eyebrow">Explore</p><h2 class="h2">Everything about the league</h2><ul class="card-grid">' +
         Site.pages.filter(function (p) { return p.file !== "index.html"; }).map(function (p) {
@@ -52,7 +43,7 @@
         }).join("") + "</ul></section>" +
 
       '<section class="wrap section"><div class="card contact"><div><p class="eyebrow">Contact</p><h2 class="h2">Questions? Get in touch.</h2>' +
-        '<p>Email the convenor about teams, schedules, scores or sponsorship.</p></div>' +
+        '<p>Email the convenor about teams, schedules or scores.</p></div>' +
         '<a class="btn btn-dark" href="' + Site.mailto(C.name) + '">' + esc(C.contactEmail) + "</a></div></section>";
 
     function fact(label, value) { return '<div class="fact"><dt>' + esc(label) + "</dt><dd>" + value + "</dd></div>"; }
@@ -328,24 +319,6 @@
       "</section></div>";
   }
 
-  /* =========================== SPONSORS =========================== */
-  function sponsorsPage() {
-    var sponsors = (C.sponsors || []).filter(function (s) { return s && s.name; });
-    main.innerHTML = '<div class="wrap section">' + sectionHead("Our partners", "Sponsors",
-      "Our sponsors keep fees low and the league running. Thank you!") +
-      (sponsors.length ? '<ul class="sponsor-grid">' + sponsors.map(function (s) {
-        var inner = (s.logo ? '<img src="' + esc(s.logo) + '" alt="' + esc(s.name) + ' logo">' : "") + '<span class="sponsor-name">' + esc(s.name) + "</span>";
-        return '<li class="card sponsor">' + (s.website ? '<a href="' + esc(s.website) + '" target="_blank" rel="noopener">' + inner + "</a>" : inner) + "</li>";
-      }).join("") + "</ul>"
-        : '<div class="card soon"><p><strong>Be our first sponsor.</strong> Your business could be featured here and on the home page.</p></div>') +
-      '<section class="section"><p class="eyebrow">Packages</p><h2 class="h2">Become a sponsor</h2><ul class="package-grid">' +
-      (C.sponsorPackages || []).map(function (p, i) {
-        return '<li class="card package' + (i === 1 ? " featured" : "") + '"><h3 class="package-name">' + esc(p.name) + '</h3><p class="package-price">' + esc(p.price) +
-          '</p><ul class="perks">' + (p.perks || []).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
-          '<a class="btn ' + (i === 1 ? "btn-primary" : "btn-dark") + '" href="' + Site.mailto("Sponsorship: " + p.name + " package") + '">Email us about ' + esc(p.name) + "</a></li>";
-      }).join("") + "</ul></section></div>";
-  }
-
   /* =========================== INFO =========================== */
   function infoPage() {
     function mapLink(v) {
@@ -374,6 +347,6 @@
         '<p>Questions or concerns? Email <a href="' + Site.mailto(C.name) + '">' + esc(C.contactEmail) + "</a>.</p></section></div>";
   }
 
-  var routes = { home: home, schedule: schedule, standings: standingsPage, teams: teamsPage, register: registerPage, sponsors: sponsorsPage, info: infoPage };
+  var routes = { home: home, schedule: schedule, standings: standingsPage, teams: teamsPage, register: registerPage, info: infoPage };
   if (routes[page]) routes[page]();
 })();
