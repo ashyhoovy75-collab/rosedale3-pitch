@@ -31,7 +31,7 @@ window.LEAGUE = {
   // type its exact file name here (e.g. "logo.png"). A placeholder is included.
   logo: "logo.svg",
 
-  // Email address for questions, registration and sponsorship.
+  // Email address for questions and registration.
   contactEmail: "r3pconvenor@gmail.com",
 
 
@@ -128,35 +128,6 @@ window.LEAGUE = {
 
   // Text used for the Google Maps link when a diamond has no address yet.
   mapSearchFallback: "Rosedale park baseball diamond",
-
-
-  // ---------- Sponsors ----------
-
-  // Current sponsors. Copy the example line, remove the // at its start, and
-  // fill it in. "logo" is a picture file you put in this same folder.
-  // With no sponsors, the "Presented by" strip on the home page is hidden.
-  sponsors: [
-    // { name: "Joe's Pizza", website: "https://example.com", logo: "sponsor-joes-pizza.png" },
-  ],
-
-  // Sponsorship packages on the Sponsors page (prices and perks are placeholders).
-  sponsorPackages: [
-    {
-      name: "Single",
-      price: "$150",
-      perks: ["Logo on the Sponsors page", "Thank-you post at the start of the season"]
-    },
-    {
-      name: "Double",
-      price: "$300",
-      perks: ["Everything in Single", "Logo in the home page 'Presented by' strip", "Shout-out at the playoffs"]
-    },
-    {
-      name: "Home Run",
-      price: "$600",
-      perks: ["Everything in Double", "Logo on one team's jerseys", "Banner at the diamonds all season"]
-    }
-  ],
 
 
   // ---------- League info page ----------

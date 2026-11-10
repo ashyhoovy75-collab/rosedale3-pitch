@@ -198,10 +198,6 @@ main > .section:first-child, main > .wrap.section { padding-top: 2.5rem; }
 .fact-wide { grid-column: 1 / -1; }
 .fact-text { font-size: 1.05rem !important; font-weight: 600 !important; }
 
-.logo-strip { list-style: none; margin: 0; padding: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.logo-strip img { max-height: 56px; width: auto; }
-.logo-name { font-weight: 800; color: var(--ink); }
-
 .card { background: var(--card); border-radius: 16px; padding: 1.5rem; }
 .card-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0.75rem; }
 .card-link { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: var(--ink); transition: background-color 0.15s, transform 0.15s; }
@@ -297,7 +293,7 @@ main > .section:first-child, main > .wrap.section { padding-top: 2.5rem; }
 .champion-name { margin: 0; font-size: 1.75rem; font-weight: 900; letter-spacing: -0.03em; }
 
 /* =====================================================================
-   REGISTER, SPONSORS, INFO
+   REGISTER, INFO
    ===================================================================== */
 .steps, .rules { padding-left: 1.4rem; max-width: 46rem; }
 .steps li, .rules li { margin-bottom: 0.6rem; padding-left: 0.25rem; }
@@ -307,18 +303,7 @@ main > .section:first-child, main > .wrap.section { padding-top: 2.5rem; }
 .soon { max-width: 40rem; }
 .soon .btn { overflow-wrap: anywhere; }
 
-.sponsor-grid, .package-grid, .venue-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
-.sponsor-grid { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
-.sponsor a { color: var(--ink); text-decoration: none; display: block; }
-.sponsor img { display: block; max-height: 80px; width: auto; margin-bottom: 0.75rem; }
-.sponsor-name { font-weight: 800; font-size: 1.1rem; }
-.package-grid { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
-.package { display: flex; flex-direction: column; }
-.package.featured { background: var(--brand-tint); }
-.package-name { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
-.package-price { font-size: 2.5rem; font-weight: 900; letter-spacing: -0.04em; margin: 0.25rem 0 0.75rem; }
-.perks { padding-left: 1.2rem; flex: 1; margin: 0 0 1.25rem; }
-.perks li { margin-bottom: 0.35rem; }
+.venue-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
 .venue-grid { grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
 .toc { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .toc a { background: var(--card); color: var(--ink); text-decoration: none; font-weight: 700; padding: 0.45rem 1rem; border-radius: 999px; font-size: 0.9rem; }

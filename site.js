@@ -12,7 +12,6 @@
     { file: "schedule.html", label: "Schedule", title: "Schedule & scores", blurb: "Every game, time and diamond, with final scores." },
     { file: "standings.html", label: "Standings", title: "Standings", blurb: "Wins, losses and the playoff bracket, updated automatically." },
     { file: "teams.html", label: "Teams", title: "Teams", blurb: "Who's in each division and who's confirmed." },
-    { file: "sponsors.html", label: "Sponsors", title: "Sponsors", blurb: "The local businesses behind the league, and how to join them." },
     { file: "info.html", label: "League info", title: "League info", blurb: "Diamonds, rules, tiebreaks, FAQ and code of conduct." },
     { file: "register.html", label: "Register", title: "Register a team", blurb: "Fee, deadline and the registration form.", cta: true }
   ];
