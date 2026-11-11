@@ -107,16 +107,12 @@ window.LEAGUE = {
 
   // ---------- Diamonds (where games are played) ----------
 
-  // One entry per field. "address" is shown on the League Information page and
-  // used for the Google Maps link. Leave address empty ("") until you know it.
+  // One entry per field. The names are shown on the home page.
   venues: [
-    { name: "Diamond 1", address: "" },
-    { name: "Diamond 2", address: "" },
-    { name: "Diamond 3", address: "" }
+    { name: "Diamond 1" },
+    { name: "Diamond 2" },
+    { name: "Diamond 3" }
   ],
-
-  // Text used for the Google Maps link when a diamond has no address yet.
-  mapSearchFallback: "Rosedale park baseball diamond",
 
 
   // ---------- League Information page ----------
@@ -124,41 +120,49 @@ window.LEAGUE = {
   // The description at the top of the League Information page.
   leagueDescription: "Rosedale Co-Ed Adult 3-Pitch League is a fun, recreational softball league in Hamilton that brings men and women together for Friday nights on the diamond. Whether you're an experienced player or just looking to get out, stay active, meet new people and enjoy some friendly competition, it's a great way to spend your summer evenings!",
 
-  // The next three sections show "Coming soon" while they are empty: [ ]
-  // To fill one in, put each item in quote marks between the [ ], one per line,
-  // with a comma after every line but the last. Example:
-  //   rules: [
-  //     "First rule.",
-  //     "Second rule."
-  //   ],
-
-  // League rules (shown as a numbered list).
-  rules: [],
-
-  // League constitution (each line is shown as its own paragraph).
-  constitution: [],
-
-  // The constitution as a PDF file in the same folder as the website.
+  // Each PDF below must be in the same folder as the website.
   // Visitors get buttons to open or download it. Leave empty ("") to hide them.
+
+  // The league rules as a PDF.
+  rulesFile: "rules.pdf",
+
+  // The league constitution as a PDF.
   constitutionFile: "constitution.pdf",
 
   // Team fees (shown as a list), e.g. "$500 per team, due by May 1".
+  // While the list is empty [ ], the page shows "Coming soon".
   teamFees: [],
 
-  // Frequently asked questions on the League Information page.
-  faq: [
-    { q: "Where do I park?", a: "Free parking is available at the park. Please don't park on the grass or block the lanes. [Confirm parking details]" },
-    { q: "Can friends and family watch?", a: "Yes, spectators are always welcome. Please stay behind the fences and away from the foul lines." },
-    { q: "What should I bring?", a: "Your glove, running shoes or cleats (no metal spikes), water and sunscreen. Bats and balls are provided." },
-    { q: "What happens if it rains?", a: "Cancellations are emailed to team captains at least 2 hours before game time. Rained-out games are rescheduled when possible." }
+  // Standings and tiebreaks, from the league rules (page 5).
+  standingsTiebreakers: [
+    "Points earned",
+    "Winning percentage",
+    "Head to head",
+    "Plus/minus"
+  ],
+  tournamentTiebreakers: [
+    "Games won",
+    "Head to head",
+    "Plus/minus",
+    "Runs allowed"
+  ],
+  tiebreakNote: "Playoff and tournament games are to be played out until the winning team meets the plus 7 maximum run differential. The highest-ranking team at the end of the regular season has home team privileges.",
+
+  // Code of conduct, from the league rules.
+  codeOfConduct: [
+    "The drinking of alcoholic beverages and the use of violence is strictly prohibited in public parks, in accordance with Parks By-law #77-221 and the City of Hamilton zero tolerance policy.",
+    "By submitting a roster, the team representative confirms that all listed players have read and agree to abide by the City of Hamilton zero tolerance policy.",
+    "Any disciplinary action taken against a rostered player under this policy may also lead to sanctions against the team representative, at the discretion of the Executive Council.",
+    "All discussions about plays and rules during a game are decided by the umpire, involving the team reps only when necessary. Players are not to leave the bench area or their position to get involved."
   ],
 
-  // Code of conduct on the League Information page.
-  codeOfConduct: [
-    "Play hard, play fair, and have fun. This is a recreational league.",
-    "Respect the umpires, the other team, your teammates and spectators.",
-    "No abusive language, threats or fighting. Players may be suspended by the convenor.",
-    "No alcohol or drugs before or during games, at the diamonds or in the parking lot.",
-    "Leave the dugouts and diamonds clean: take your garbage with you."
-  ]
+  // City of Hamilton zero tolerance (RZone) box in the Code of conduct section.
+  // cityPolicyQuote is the City's exact wording, shown in quotation marks.
+  cityPolicyTitle: "Zero tolerance to violence: City of Hamilton RZone policy",
+  cityPolicyQuote: "a zero-tolerance approach to violence, abuse and other inappropriate behaviours",
+  cityPolicyText: [
+    "Rosedale 3 Pitch follows the City of Hamilton RZone Respectful Environments Policy, which applies at all City facilities and properties, including the parks and diamonds where we play. RZone stands for respect for yourself, respect for others and responsibility for your actions.",
+    "Under the policy, all forms of violence, vandalism and inappropriate behaviour are unacceptable. Depending on how serious it is, anyone who breaks the policy may be removed from City property right away, given a letter of warning and/or banned from a facility. Incidents should be reported within 24 hours, to City staff or online."
+  ],
+  cityPolicyLink: "https://www.hamilton.ca/city-council/plans-strategies/strategies/rzone-respectful-environments"
 };

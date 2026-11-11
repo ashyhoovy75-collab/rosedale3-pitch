@@ -67,8 +67,7 @@ Fill in the **Playoffs** tab: `Round | Game | Team A | Score A | Team B | Score 
 ## 7. Change a setting
 
 Open **config.js**. Every setting has a note above it. Change only the text inside the quote marks and
-keep the commas. Dates are written `YYYY-MM-DD`. Things you'll likely change: the team list, rules, constitution,
-team fees, diamond addresses and FAQ.
+keep the commas. Dates are written `YYYY-MM-DD`. Things you'll likely change: the team list, team fees, tiebreaks and code of conduct.
 
 The logo is `logo.png`. To replace it, upload a new picture with the same name (or a new name, and change `logo:` in config.js to match).
 (The small icons `favicon.png`, `apple-touch-icon.png` and the sharing picture `og-image.png` are made from
@@ -79,7 +78,7 @@ the logo. If you change the logo, ask for new versions of these too.)
 | File | What it is |
 | --- | --- |
 | index.html, schedule.html, standings.html, teams.html, info.html | The 5 pages (no need to edit) |
-| constitution.pdf | The league constitution, linked from the League Information page |
+| rules.pdf, constitution.pdf | League rules and constitution, linked from the League Information page. To update one, upload a new PDF with the same name. |
 | config.js | **Your settings** |
 | style.css | Look and colours (colours are at the top) |
 | site.js, league.js, pages.js | The workings (no need to edit) |
