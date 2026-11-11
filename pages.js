@@ -278,10 +278,7 @@
       (list.length ? '<ul class="team-grid">' + list.map(function (t) {
         var sw = String(t.swatch || "").trim().toLowerCase();
         var swClass = SWATCHES.indexOf(sw) >= 0 ? " swatch-" + sw : " swatch-none";
-        var colour = String(t.colour || "").trim();
-        return '<li class="card team-card' + swClass + '"><span class="swatch" aria-hidden="true"></span>' +
-          '<span class="team-text"><span class="team-name">' + esc(t.name) + "</span>" +
-          '<span class="team-colour">' + (colour ? "Colour: " + esc(colour) : "Colour to be confirmed") + "</span></span></li>";
+        return '<li class="card team-card' + swClass + '"><span class="team-name">' + esc(t.name) + "</span></li>";
       }).join("") + "</ul>" : Site.notice("Teams coming soon.")) + "</div>";
   }
 
