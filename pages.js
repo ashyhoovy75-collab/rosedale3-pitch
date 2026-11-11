@@ -75,8 +75,19 @@
   function schedule() {
     main.innerHTML = '<div class="wrap section">' + sectionHead(C.seasonName, "Schedule & scores",
       "Scores appear here as soon as they're submitted. Times and diamonds can change, so check before you go.") +
+      scoreNotice() +
       '<div id="controls" class="controls"></div><div id="out" aria-live="polite"><p class="loading">Loading the schedule&hellip;</p></div></div>';
     var state = { div: "all", team: "", scrolled: false };
+
+    // The "IMPORTANT" box under the title. Email addresses become links.
+    function scoreNotice() {
+      var text = String(C.scoreNotice || "").trim();
+      if (!text) return "";
+      var html = esc(text).replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g, function (m) {
+        return '<a href="mailto:' + m + '">' + m + "</a>";
+      });
+      return '<div class="notice notice-important" role="note"><p><strong>IMPORTANT:</strong> ' + html + "</p></div>";
+    }
 
     function render(data) {
       var out = $("#out");
@@ -91,7 +102,6 @@
       var games = data.games.status === "ok" ? L.parseGames(data.games.text, C) : [];
       var scores = data.scores.status === "ok" ? L.parseScores(data.scores.text, C) : [];
       var match = L.matchScores(games, scores);
-      var divs = L.divisionList(C, teams);
 
       function display(name, key) { return idx[key] ? idx[key].name : name; }
       function divOf(key) { return idx[key] ? idx[key].divKey : ""; }
@@ -115,13 +125,10 @@
         byKey[k].rows.push({ game: null, score: s });
       });
 
-      // Controls: division tabs (hidden with one division) and "Show only my team".
+      // Controls: "Show only my team".
       var teamChoices = teams.filter(function (t) { return t.state !== "waitlist" && (state.div === "all" || t.divKey === state.div); });
       if (state.team && !teamChoices.some(function (t) { return t.key === state.team; })) state.team = "";
       var ctrl = "";
-      if (divs.length > 1) {
-        ctrl += Site.segmented([{ value: "all", label: "All" }].concat(divs.map(function (d) { return { value: d.key, label: d.name }; })), state.div, "Division");
-      }
       if (teamChoices.length) {
         ctrl += '<label class="select"><span>Show only my team</span><select id="team-filter"><option value="">All teams</option>' +
           teamChoices.slice().sort(function (a, b) { return a.name.localeCompare(b.name); }).map(function (t) {
@@ -129,9 +136,6 @@
           }).join("") + "</select></label>";
       }
       $("#controls").innerHTML = ctrl;
-      Array.prototype.forEach.call(document.querySelectorAll("#controls .segmented button"), function (b) {
-        b.addEventListener("click", function () { state.div = b.getAttribute("data-value"); rerender(); });
-      });
       var sel = $("#team-filter");
       if (sel) sel.addEventListener("change", function () { state.team = sel.value; draw(); });
 
@@ -177,12 +181,6 @@
           var el = target && document.getElementById(target.id);
           if (el) el.scrollIntoView();
         }
-      }
-      // Rebuild the controls (the team list depends on the division) and redraw.
-      function rerender() {
-        render(data);
-        var btn = document.querySelector('#controls .segmented button[aria-pressed="true"]');
-        if (btn) btn.focus();
       }
       draw();
     }

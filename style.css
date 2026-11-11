@@ -264,6 +264,8 @@ main > .section:first-child, main > .wrap.section { padding-top: 2.5rem; }
 .notice { background: var(--card); border-radius: 16px; padding: 1.25rem 1.5rem; margin: 1rem 0; font-weight: 600; }
 .notice p { margin: 0; }
 .notice-warn { background: var(--warn-bg); color: var(--warn-text); border: 1px solid var(--warn-line); }
+.notice-important { background: var(--brand-tint); color: var(--ink); border-left: 4px solid var(--brand); font-weight: 500; line-height: 1.55; }
+.notice-important strong { color: var(--brand); }
 .loading { color: var(--accent-text); margin-top: 1.5rem; }
 .checked { margin-top: 1.25rem; font-size: 0.85rem; color: var(--accent-text); }
 

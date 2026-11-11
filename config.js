@@ -81,6 +81,14 @@ window.LEAGUE = {
   },
 
 
+  // ---------- Schedule & scores page ----------
+
+  // Important notice shown just under the "Schedule & scores" title.
+  // Email addresses typed here become clickable automatically.
+  // Leave empty ("") to hide the notice.
+  scoreNotice: "Both teams are required to send in their scores by 9pm on the following Monday. Failure to do so will result in a forfeiture of the game only to the team who did not call in their score. A team is permitted a maximum of 4 forfeitures over the course of the season. Any more than 4 forfeitures will result in that team being ineligible for the year end tournament. Pictures of scores are to be emailed to both Taylor DeCoste & Lindsay Poyton at tdecoste13@gmail.com & poyton05@hotmail.com or via Game Sheets WhatsApp Group.",
+
+
   // ---------- Teams ----------
 
   // The teams shown on the Teams page, in the order you want them listed.
