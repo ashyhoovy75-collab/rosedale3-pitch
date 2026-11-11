@@ -30,11 +30,10 @@
       '<section class="wrap section"><h2 class="visually-hidden">Key facts</h2><dl class="facts">' +
         fact("Season", esc(C.seasonName) + '<span class="fact-sub">' + esc(Site.shortDate(C.firstGameDay)) + " &ndash; " + esc(Site.shortDate(C.lastRegularSeasonDay)) + "</span>") +
         fact("Location", esc(C.locationSummary) + '<span class="fact-sub">' + esc((C.venues || []).map(function (v) { return v.name; }).join(" · ")) + "</span>") +
-      "</dl>" +
-      '<div class="actions"><a class="btn btn-primary" href="register.html">Register a team</a></div></section>' +
+      "</dl></section>" +
 
       '<section class="wrap section"><p class="eyebrow">Explore</p><h2 class="h2">Everything about the league</h2><ul class="card-grid">' +
-        Site.pages.filter(function (p) { return p.file !== "index.html"; }).map(function (p) {
+        Site.pages.filter(function (p) { return p.file !== "index.html" && p.file !== "register.html"; }).map(function (p) {
           return '<li><a class="card card-link" href="' + p.file + '"><span class="card-title">' + esc(p.title) +
             '</span><span class="card-text">' + esc(p.blurb) + '</span><span class="card-arrow" aria-hidden="true">&rarr;</span></a></li>';
         }).join("") + "</ul></section>" +
