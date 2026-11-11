@@ -269,47 +269,46 @@
 
   /* =========================== INFO =========================== */
   function infoPage() {
-    function mapLink(v) {
-      var q = v.address || (v.name + " " + (C.mapSearchFallback || C.locationSummary || ""));
-      return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
-    }
     function items(list) { return (list || []).filter(function (x) { return String(x).trim(); }); }
-    // Constitution: a PDF to open or download, plus any typed paragraphs.
-    function constitutionBlock() {
-      var file = String(C.constitutionFile || "").trim();
-      var text = constitution.map(function (r) { return "<p>" + esc(r) + "</p>"; }).join("");
-      if (!file) return text || soon("league constitution");
-      return '<div class="card doc-card"><h3 class="h3">Rosedale 3 Pitch Council Agreement</h3>' +
-        '<p>The league constitution, as a PDF.</p><div class="actions">' +
-        '<a class="btn btn-primary btn-sm" href="' + esc(file) + '" target="_blank" rel="noopener">Read the constitution</a>' +
-        '<a class="btn btn-outline btn-sm" href="' + esc(file) + '" download>Download PDF</a></div></div>' + text;
-    }
     function soon(what) { return '<div class="card soon"><p><strong>Coming soon.</strong> The ' + what + " will be posted here.</p></div>"; }
-    var rules = items(C.rules), constitution = items(C.constitution), fees = items(C.teamFees);
+    function list(tag, arr) { return "<" + tag + ' class="rules">' + arr.map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</" + tag + ">"; }
+    // A PDF with "Read" and "Download" buttons.
+    function docBlock(file, title, desc, readLabel, missing) {
+      file = String(file || "").trim();
+      if (!file) return soon(missing);
+      return '<div class="card doc-card"><h3 class="h3">' + esc(title) + "</h3><p>" + esc(desc) + '</p><div class="actions">' +
+        '<a class="btn btn-primary btn-sm" href="' + esc(file) + '" target="_blank" rel="noopener">' + esc(readLabel) + "</a>" +
+        '<a class="btn btn-outline btn-sm" href="' + esc(file) + '" download>Download PDF</a></div></div>';
+    }
+    var fees = items(C.teamFees), yearEnd = items(C.standingsTiebreakers), tourney = items(C.tournamentTiebreakers);
+    var conduct = items(C.codeOfConduct), cityText = items(C.cityPolicyText);
+    var link = String(C.cityPolicyLink || "").trim();
+
+    var tiebreaks = (yearEnd.length || tourney.length) ?
+      (yearEnd.length ? '<h3 class="h3">Year-end standings</h3><p>Ties in the standings are broken in this order:</p>' + list("ol", yearEnd) : "") +
+      (tourney.length ? '<h3 class="h3">Tournament</h3>' + list("ol", tourney) : "") +
+      (C.tiebreakNote ? '<p class="muted">' + esc(C.tiebreakNote) + "</p>" : "")
+      : soon("tiebreak rules");
+
+    var city = (C.cityPolicyQuote || cityText.length) ?
+      '<div class="card city-policy"><h3 class="h3">' + esc(C.cityPolicyTitle || "City of Hamilton zero tolerance policy") + "</h3>" +
+        (C.cityPolicyQuote ? '<p class="city-quote">The City of Hamilton has adopted &ldquo;' + esc(C.cityPolicyQuote) + '&rdquo; at all City facilities and properties.</p>' : "") +
+        cityText.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
+        (link ? '<div class="actions"><a class="btn btn-outline btn-sm" href="' + esc(link) + '" target="_blank" rel="noopener">Read the City of Hamilton RZone policy</a></div>' : "") +
+      "</div>" : "";
+
     main.innerHTML = '<div class="wrap section">' + sectionHead("Good to know", "League Information", "") +
-      '<nav class="toc" aria-label="On this page"><a href="#about">About</a><a href="#rules">Rules</a><a href="#constitution">Constitution</a><a href="#fees">Team fees</a><a href="#diamonds">Diamonds</a><a href="#tiebreaks">Tiebreaks</a><a href="#faq">FAQ</a><a href="#conduct">Code of conduct</a></nav>' +
+      '<nav class="toc" aria-label="On this page"><a href="#about">About</a><a href="#rules">Rules</a><a href="#constitution">Constitution</a><a href="#fees">Team fees</a><a href="#tiebreaks">Standings and tiebreaks</a><a href="#conduct">Code of conduct</a></nav>' +
       '<section id="about" class="section-tight"><h2 class="h2">About the league</h2><p class="lead">' + esc(C.leagueDescription) + "</p></section>" +
       '<section id="rules" class="section-tight"><h2 class="h2">Rules</h2>' +
-        (rules.length ? '<ol class="rules">' + rules.map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</ol>" : soon("league rules")) + "</section>" +
+        docBlock(C.rulesFile, "Rosedale 3 Pitch Rules", "The full league rules, as a PDF.", "Read the rules", "league rules") + "</section>" +
       '<section id="constitution" class="section-tight"><h2 class="h2">Constitution</h2>' +
-        constitutionBlock() + "</section>" +
+        docBlock(C.constitutionFile, "Rosedale 3 Pitch Council Agreement", "The league constitution, as a PDF.", "Read the constitution", "league constitution") + "</section>" +
       '<section id="fees" class="section-tight"><h2 class="h2">Team fees</h2>' +
-        (fees.length ? '<ul class="rules">' + fees.map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</ul>" : soon("team fees")) + "</section>" +
-      '<section id="diamonds" class="section-tight"><h2 class="h2">Diamonds</h2><ul class="venue-grid">' +
-        (C.venues || []).map(function (v) {
-          return '<li class="card venue"><h3 class="h3">' + esc(v.name) + "</h3><p>" + (v.address ? esc(v.address) : esc(C.locationSummary) + ' <span class="muted">(full address coming soon)</span>') +
-            '</p><a class="btn btn-outline btn-sm" href="' + esc(mapLink(v)) + '" target="_blank" rel="noopener">Open in Google Maps</a></li>';
-        }).join("") + "</ul></section>" +
-      '<section id="tiebreaks" class="section-tight"><h2 class="h2">Standings and tiebreaks</h2>' +
-        "<p>Standings are calculated automatically from the submitted regular-season scores. Teams are ranked by:</p><ol class=\"rules\">" +
-        "<li>Winning percentage (PCT): wins divided by games played.</li>" +
-        "<li>Run differential (DIFF): runs scored minus runs allowed.</li>" +
-        "<li>Runs scored (PF).</li><li>Team name, alphabetically.</li></ol>" +
-        "<p class=\"muted\">Games behind (GB) shows how far a team is from first place. Playoff games never count in the standings.</p></section>" +
-      '<section id="faq" class="section-tight"><h2 class="h2">FAQ</h2><div class="faq">' +
-        (C.faq || []).map(function (f) { return "<details><summary>" + esc(f.q) + "</summary><p>" + esc(f.a) + "</p></details>"; }).join("") + "</div></section>" +
-      '<section id="conduct" class="section-tight"><h2 class="h2">Code of conduct</h2><ul class="rules">' +
-        (C.codeOfConduct || []).map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</ul>" +
+        (fees.length ? list("ul", fees) : soon("team fees")) + "</section>" +
+      '<section id="tiebreaks" class="section-tight tiebreaks"><h2 class="h2">Standings and tiebreaks</h2>' + tiebreaks + "</section>" +
+      '<section id="conduct" class="section-tight"><h2 class="h2">Code of conduct</h2>' +
+        (conduct.length ? list("ul", conduct) : "") + city +
         '<p>Questions or concerns? Email <a href="' + Site.mailto(C.name) + '">' + esc(C.contactEmail) + "</a>.</p></section></div>";
   }
 

@@ -306,19 +306,18 @@ main > .section:first-child, main > .wrap.section { padding-top: 2.5rem; }
 .soon, .doc-card { max-width: 40rem; }
 .doc-card p { margin-top: 0.35rem; color: var(--accent-text); }
 .doc-card .actions { margin-top: 1rem; }
+.tiebreaks h3 { margin-top: 1.25rem; }
+.city-policy { max-width: 46rem; margin: 1.5rem 0; border-left: 4px solid var(--brand); }
+.city-policy p { margin-top: 0.6rem; }
+.city-policy .city-quote { font-weight: 600; }
+.city-policy .actions { margin-top: 1rem; }
 .soon .btn { overflow-wrap: anywhere; }
 
-.venue-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
-.venue-grid { grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
 .team-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.75rem; }
 .team-card { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; border-left: 4px solid var(--brand); }
 .toc { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .toc a { background: var(--card); color: var(--ink); text-decoration: none; font-weight: 700; padding: 0.45rem 1rem; border-radius: 999px; font-size: 0.9rem; }
 .toc a:hover { background: var(--card-hover); }
-.faq { max-width: 46rem; }
-.faq details { border-bottom: 1px solid var(--line); padding: 0.9rem 0; }
-.faq summary { font-weight: 700; cursor: pointer; }
-.faq details p { margin: 0.6rem 0 0; color: var(--accent-text); }
 
 /* Respect "reduce motion" */
 @media (prefers-reduced-motion: reduce) {
