@@ -28,8 +28,8 @@ window.LEAGUE = {
   locationSummary: "Rosedale",
 
   // Logo picture file. Put the picture in the same folder as this file and
-  // type its exact file name here (e.g. "logo.png"). A placeholder is included.
-  logo: "logo.svg",
+  // type its exact file name here (e.g. "logo.png").
+  logo: "logo.png",
 
   // Email address for questions and registration.
   contactEmail: "r3pconvenor@gmail.com",
@@ -81,6 +81,25 @@ window.LEAGUE = {
   },
 
 
+  // ---------- Teams ----------
+
+  // The teams shown on the Teams page, in the order you want them listed.
+  // One team per line, in quote marks, with a comma after every line but the last.
+  teams: [
+    "Red",
+    "Dirt Dusters",
+    "Rampage",
+    "Choke 'N' Poke",
+    "Unstoppables",
+    "Dirty Swingers",
+    "Bat Intentions",
+    "Trotters",
+    "I'd Hit That",
+    "McGlovins",
+    "Tough Glove"
+  ],
+
+
   // ---------- Registration ----------
 
   // Your registration Google Form link. Paste either the normal link
@@ -118,7 +137,7 @@ window.LEAGUE = {
 
   // ---------- Diamonds (where games are played) ----------
 
-  // One entry per field. "address" is shown on the League info page and
+  // One entry per field. "address" is shown on the League Information page and
   // used for the Google Maps link. Leave address empty ("") until you know it.
   venues: [
     { name: "Diamond 1", address: "" },
@@ -130,20 +149,29 @@ window.LEAGUE = {
   mapSearchFallback: "Rosedale park baseball diamond",
 
 
-  // ---------- League info page ----------
+  // ---------- League Information page ----------
 
-  // League rules (placeholder — replace with your own). One rule per line.
-  rules: [
-    "Each batter gets a maximum of 3 pitches, thrown by a player from their own team.",
-    "A foul ball on the third pitch is an out. A ball not put in play after 3 pitches is an out.",
-    "No walks, no bunting and no stealing. Runners may not leave the base until the ball is hit.",
-    "Games are 7 innings or 75 minutes, whichever comes first. No new inning starts after 70 minutes.",
-    "Teams need at least 8 players to start a game. A team that can't field 8 players 15 minutes after start time forfeits.",
-    "Home team keeps the official score and submits it with the score form the same day.",
-    "Mercy rule: a game ends when a team leads by 15 or more runs after 5 innings."
-  ],
+  // The description at the top of the League Information page.
+  leagueDescription: "Rosedale Co-Ed Adult 3-Pitch League is a fun, recreational softball league in Hamilton that brings men and women together for Friday nights on the diamond. Whether you're an experienced player or just looking to get out, stay active, meet new people and enjoy some friendly competition, it's a great way to spend your summer evenings!",
 
-  // Frequently asked questions on the League info page.
+  // The next three sections show "Coming soon" while they are empty: [ ]
+  // To fill one in, put each item in quote marks between the [ ], one per line,
+  // with a comma after every line but the last. Example:
+  //   rules: [
+  //     "First rule.",
+  //     "Second rule."
+  //   ],
+
+  // League rules (shown as a numbered list).
+  rules: [],
+
+  // League constitution (each line is shown as its own paragraph).
+  constitution: [],
+
+  // Team fees (shown as a list), e.g. "$500 per team, due by May 1".
+  teamFees: [],
+
+  // Frequently asked questions on the League Information page.
   faq: [
     { q: "Where do I park?", a: "Free parking is available at the park. Please don't park on the grass or block the lanes. [Confirm parking details]" },
     { q: "Can friends and family watch?", a: "Yes, spectators are always welcome. Please stay behind the fences and away from the foul lines." },
@@ -151,7 +179,7 @@ window.LEAGUE = {
     { q: "What happens if it rains?", a: "Cancellations are emailed to team captains at least 2 hours before game time. Rained-out games are rescheduled when possible." }
   ],
 
-  // Code of conduct on the League info page.
+  // Code of conduct on the League Information page.
   codeOfConduct: [
     "Play hard, play fair, and have fun. This is a recreational league.",
     "Respect the umpires, the other team, your teammates and spectators.",

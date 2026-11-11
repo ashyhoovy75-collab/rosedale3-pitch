@@ -25,7 +25,7 @@
           '<p class="lead">' + esc(C.tagline) + "</p>" +
           '<div id="countdown" class="countdown"></div>' +
         "</div>" +
-        '<img class="hero-logo" src="' + esc(C.logo) + '" alt="' + esc(C.name) + ' logo" width="280" height="280">' +
+        '<img class="hero-logo" src="' + esc(C.logo) + '" alt="' + esc(C.name) + ' logo" width="640" height="500">' +
       "</div></section>" +
 
       '<section class="wrap section"><h2 class="visually-hidden">Key facts</h2><dl class="facts">' +
@@ -267,36 +267,12 @@
 
   /* =========================== TEAMS =========================== */
   function teamsPage() {
+    var list = (C.teams || []).filter(function (t) { return String(t).trim(); });
     main.innerHTML = '<div class="wrap section">' + sectionHead(C.seasonName, "Teams",
-      'A team is <strong>Confirmed</strong> once its fee is paid. Want in? <a href="register.html">Register a team</a>.') +
-      '<div id="out" aria-live="polite"><p class="loading">Loading the teams&hellip;</p></div></div>';
-    Site.loadSheets(["teams"], function (data) {
-      var out = $("#out");
-      if (data.teams.status === "empty") { out.innerHTML = Site.notice("Teams coming soon."); return; }
-      if (data.teams.status === "error") { out.innerHTML = Site.notice("Couldn't load the teams right now. Try again in a minute.", "notice-warn"); return; }
-      var teams = L.parseTeams(data.teams.text, C);
-      if (!teams.length) { out.innerHTML = Site.notice("Teams coming soon. Be the first to register!") + Site.lastChecked(data); return; }
-      var divs = L.divisionList(C, teams);
-      var noDiv = teams.filter(function (t) { return !t.divKey; });
-      if (noDiv.length) divs.push({ name: "Division to be confirmed", key: "" });
-      var max = parseInt(C.maxTeamsPerDivision, 10);
-      out.innerHTML = divs.map(function (d) {
-        var inDiv = teams.filter(function (t) { return t.divKey === d.key; });
-        var listed = inDiv.filter(function (t) { return t.state !== "waitlist"; });
-        var waiting = inDiv.length - listed.length;
-        var confirmed = listed.filter(function (t) { return t.state === "confirmed"; }).length;
-        var full = d.key && max > 0 && listed.length >= max;
-        return '<section class="division"><div class="division-head"><h2 class="h3">' + esc(d.name) + '</h2><p class="count">' +
-          plural(listed.length, "team", "teams") + ", " + confirmed + " confirmed</p></div>" +
-          (full ? Site.notice("This division is full. New registrations go on a waitlist.", "notice-warn") : "") +
-          (listed.length ? '<div class="table-wrap"><table class="table"><thead><tr><th scope="col">Team</th><th scope="col">Status</th></tr></thead><tbody>' +
-            listed.map(function (t) {
-              return '<tr><th scope="row" class="team">' + esc(t.name) + "</th><td>" +
-                (t.state === "confirmed" ? '<span class="badge badge-ok">Confirmed</span>' : '<span class="badge badge-warn">Registered</span>') + "</td></tr>";
-            }).join("") + "</tbody></table></div>" : '<p class="muted">No teams yet.</p>') +
-          (waiting ? '<p class="waitlist">Waitlist: ' + plural(waiting, "team", "teams") + "</p>" : "") + "</section>";
-      }).join("") + Site.lastChecked(data);
-    });
+      list.length ? plural(list.length, "team", "teams") + " this season." : "") +
+      (list.length ? '<ul class="team-grid">' + list.map(function (t) {
+        return '<li class="card team-card">' + esc(t) + "</li>";
+      }).join("") + "</ul>" : Site.notice("Teams coming soon.")) + "</div>";
   }
 
   /* =========================== REGISTER =========================== */
@@ -325,15 +301,23 @@
       var q = v.address || (v.name + " " + (C.mapSearchFallback || C.locationSummary || ""));
       return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
     }
-    main.innerHTML = '<div class="wrap section">' + sectionHead("Good to know", "League info", "") +
-      '<nav class="toc" aria-label="On this page"><a href="#diamonds">Diamonds</a><a href="#rules">Rules</a><a href="#tiebreaks">Tiebreaks</a><a href="#faq">FAQ</a><a href="#conduct">Code of conduct</a></nav>' +
+    function items(list) { return (list || []).filter(function (x) { return String(x).trim(); }); }
+    function soon(what) { return '<div class="card soon"><p><strong>Coming soon.</strong> The ' + what + " will be posted here.</p></div>"; }
+    var rules = items(C.rules), constitution = items(C.constitution), fees = items(C.teamFees);
+    main.innerHTML = '<div class="wrap section">' + sectionHead("Good to know", "League Information", "") +
+      '<nav class="toc" aria-label="On this page"><a href="#about">About</a><a href="#rules">Rules</a><a href="#constitution">Constitution</a><a href="#fees">Team fees</a><a href="#diamonds">Diamonds</a><a href="#tiebreaks">Tiebreaks</a><a href="#faq">FAQ</a><a href="#conduct">Code of conduct</a></nav>' +
+      '<section id="about" class="section-tight"><h2 class="h2">About the league</h2><p class="lead">' + esc(C.leagueDescription) + "</p></section>" +
+      '<section id="rules" class="section-tight"><h2 class="h2">Rules</h2>' +
+        (rules.length ? '<ol class="rules">' + rules.map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</ol>" : soon("league rules")) + "</section>" +
+      '<section id="constitution" class="section-tight"><h2 class="h2">Constitution</h2>' +
+        (constitution.length ? constitution.map(function (r) { return "<p>" + esc(r) + "</p>"; }).join("") : soon("league constitution")) + "</section>" +
+      '<section id="fees" class="section-tight"><h2 class="h2">Team fees</h2>' +
+        (fees.length ? '<ul class="rules">' + fees.map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</ul>" : soon("team fees")) + "</section>" +
       '<section id="diamonds" class="section-tight"><h2 class="h2">Diamonds</h2><ul class="venue-grid">' +
         (C.venues || []).map(function (v) {
           return '<li class="card venue"><h3 class="h3">' + esc(v.name) + "</h3><p>" + (v.address ? esc(v.address) : esc(C.locationSummary) + ' <span class="muted">(full address coming soon)</span>') +
             '</p><a class="btn btn-outline btn-sm" href="' + esc(mapLink(v)) + '" target="_blank" rel="noopener">Open in Google Maps</a></li>';
         }).join("") + "</ul></section>" +
-      '<section id="rules" class="section-tight"><h2 class="h2">League rules</h2><ol class="rules">' +
-        (C.rules || []).map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</ol></section>" +
       '<section id="tiebreaks" class="section-tight"><h2 class="h2">Standings and tiebreaks</h2>' +
         "<p>Standings are calculated automatically from the submitted regular-season scores. Teams are ranked by:</p><ol class=\"rules\">" +
         "<li>Winning percentage (PCT): wins divided by games played.</li>" +

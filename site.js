@@ -11,8 +11,8 @@
     { file: "index.html", label: "Home", title: "Home", blurb: "League home page." },
     { file: "schedule.html", label: "Schedule", title: "Schedule & scores", blurb: "Every game, time and diamond, with final scores." },
     { file: "standings.html", label: "Standings", title: "Standings", blurb: "Wins, losses and the playoff bracket, updated automatically." },
-    { file: "teams.html", label: "Teams", title: "Teams", blurb: "Who's in each division and who's confirmed." },
-    { file: "info.html", label: "League info", title: "League info", blurb: "Diamonds, rules, tiebreaks, FAQ and code of conduct." },
+    { file: "teams.html", label: "Teams", title: "Teams", blurb: "The teams playing this season." },
+    { file: "info.html", label: "League Information", title: "League Information", blurb: "About the league, rules, constitution, team fees and diamonds." },
     { file: "register.html", label: "Register", title: "Register a team", blurb: "Fee, deadline and the registration form.", cta: true }
   ];
 
@@ -49,7 +49,7 @@
       '<a class="skip" href="#main">Skip to content</a>' +
       '<div class="wrap topbar-inner">' +
         '<a class="brand" href="index.html"' + (here === "index.html" ? ' aria-current="page"' : "") + '>' +
-          '<img src="' + esc(C.logo) + '" alt="" width="36" height="36">' +
+          '<img src="' + esc(C.logo) + '" alt="" width="56" height="44">' +
           "<span>" + esc(C.shortName || C.name) + "</span></a>" +
         '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">' +
           '<span class="menu-icon" aria-hidden="true"></span><span>Menu</span></button>' +
@@ -69,7 +69,7 @@
     footer.className = "footer";
     footer.innerHTML =
       '<div class="wrap footer-inner">' +
-        '<div class="footer-brand"><img src="' + esc(C.logo) + '" alt="" width="44" height="44">' +
+        '<div class="footer-brand"><img src="' + esc(C.logo) + '" alt="" width="72" height="56">' +
           "<div><strong>" + esc(C.name) + "</strong><p>" + esc(C.tagline) + "</p></div></div>" +
         '<nav aria-label="Footer"><ul class="footer-links">' +
           PAGES.map(function (p) { return '<li><a href="' + p.file + '">' + esc(p.title) + "</a></li>"; }).join("") +
@@ -84,8 +84,6 @@
   function updateHead() {
     var p = PAGES.filter(function (x) { return x.file === currentFile(); })[0] || PAGES[0];
     document.title = p.file === "index.html" ? (C.name + " | " + C.tagline) : (p.title + " | " + C.name);
-    var icon = document.querySelector('link[rel="icon"]');
-    if (icon && C.logo) icon.setAttribute("href", C.logo);
   }
 
   /* ---------- Loading the Google Sheet ---------- */
