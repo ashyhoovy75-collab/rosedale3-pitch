@@ -28,6 +28,22 @@
   /* Slightly stronger lines (bracket connectors, outlines). */
   --line-strong: #b9bec6;
 
+  /* Team colours (Teams page). */
+  --team-red: #c8102e;
+  --team-dark-blue: #1b2f6b;
+  --team-black: #111418;
+  --team-purple: #6a2c91;
+  --team-white: #ffffff;
+  --team-yellow: #f2c200;
+  --team-gray: #8a9099;
+  --team-teal: #0e8a8c;
+  --team-garnet: #7a1f2b;
+  /* Camo is made from these four shades. */
+  --team-camo-1: #4b5320;
+  --team-camo-2: #6e6b3a;
+  --team-camo-3: #8b7d5a;
+  --team-camo-4: #2f3324;
+
   /* Dark footer and dark buttons. */
   --dark: #15181d;
   /* Dark button when hovered. */
@@ -315,7 +331,26 @@ main > .section:first-child, main > .wrap.section { padding-top: 2.5rem; }
 .soon .btn { overflow-wrap: anywhere; }
 
 .team-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.75rem; }
-.team-card { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; border-left: 4px solid var(--brand); }
+.team-card { display: flex; align-items: center; gap: 0.9rem; --team: var(--line-strong); border-left: 6px solid var(--team); }
+.team-name { display: block; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
+.team-colour { display: block; margin-top: 0.15rem; font-size: 0.9rem; color: var(--accent-text); }
+.swatch { flex: none; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--team); border: 1px solid var(--line-strong); }
+.swatch-red { --team: var(--team-red); }
+.swatch-dark-blue { --team: var(--team-dark-blue); }
+.swatch-black { --team: var(--team-black); }
+.swatch-purple { --team: var(--team-purple); }
+.swatch-white { --team: var(--team-white); border-left-color: var(--line-strong); }
+.swatch-yellow { --team: var(--team-yellow); }
+.swatch-gray { --team: var(--team-gray); }
+.swatch-teal { --team: var(--team-teal); }
+.swatch-garnet { --team: var(--team-garnet); }
+.swatch-camo { --team: var(--team-camo-2); }
+.swatch-camo .swatch { background:
+  radial-gradient(circle at 30% 30%, var(--team-camo-1) 0 22%, transparent 23%),
+  radial-gradient(circle at 70% 60%, var(--team-camo-4) 0 20%, transparent 21%),
+  radial-gradient(circle at 40% 80%, var(--team-camo-3) 0 18%, transparent 19%),
+  var(--team-camo-2); }
+.swatch-none .swatch { background: transparent; border: 2px dashed var(--line-strong); }
 .toc { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .toc a { background: var(--card); color: var(--ink); text-decoration: none; font-weight: 700; padding: 0.45rem 1rem; border-radius: 999px; font-size: 0.9rem; }
 .toc a:hover { background: var(--card-hover); }

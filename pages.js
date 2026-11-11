@@ -268,11 +268,20 @@
 
   /* =========================== TEAMS =========================== */
   function teamsPage() {
-    var list = (C.teams || []).filter(function (t) { return String(t).trim(); });
+    // Each team can be plain text ("Rampage") or { name, colour, swatch }.
+    var list = (C.teams || []).map(function (t) {
+      return typeof t === "string" ? { name: t } : (t || {});
+    }).filter(function (t) { return String(t.name || "").trim(); });
+    var SWATCHES = ["red", "dark-blue", "black", "purple", "white", "yellow", "gray", "camo", "teal", "garnet"];
     main.innerHTML = '<div class="wrap section">' + sectionHead(C.seasonName, "Teams",
       list.length ? plural(list.length, "team", "teams") + " this season." : "") +
       (list.length ? '<ul class="team-grid">' + list.map(function (t) {
-        return '<li class="card team-card">' + esc(t) + "</li>";
+        var sw = String(t.swatch || "").trim().toLowerCase();
+        var swClass = SWATCHES.indexOf(sw) >= 0 ? " swatch-" + sw : " swatch-none";
+        var colour = String(t.colour || "").trim();
+        return '<li class="card team-card' + swClass + '"><span class="swatch" aria-hidden="true"></span>' +
+          '<span class="team-text"><span class="team-name">' + esc(t.name) + "</span>" +
+          '<span class="team-colour">' + (colour ? "Colour: " + esc(colour) : "Colour to be confirmed") + "</span></span></li>";
       }).join("") + "</ul>" : Site.notice("Teams coming soon.")) + "</div>";
   }
 

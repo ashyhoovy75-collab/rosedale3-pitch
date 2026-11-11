@@ -94,18 +94,25 @@ window.LEAGUE = {
   // ---------- Teams ----------
 
   // The teams shown on the Teams page, in the order you want them listed.
-  // One team per line, in quote marks, with a comma after every line but the last.
+  // For each team:
+  //   name:   the team name
+  //   colour: the colour name shown under the team ("" if not decided yet)
+  //   swatch: which colour dot to show. Choose one of:
+  //           red, dark-blue, black, purple, white, yellow, gray, camo, teal, garnet
+  //           ("" shows an empty dot). The colours themselves are at the top of style.css.
+  // One team per line, with a comma after every line but the last.
   teams: [
-    "Red Dirt Dusters",
-    "Rampage",
-    "Choke 'N' Poke",
-    "Unstoppables",
-    "Dirty Swingers",
-    "Bat Intentions",
-    "Trotters",
-    "I'd Hit That",
-    "McGlovins",
-    "Tough Glove"
+    { name: "Red",            colour: "Red",       swatch: "red" },
+    { name: "Dirt Dusters",   colour: "Dark blue", swatch: "dark-blue" },
+    { name: "Rampage",        colour: "Black",     swatch: "black" },
+    { name: "Choke 'N' Poke", colour: "Purple",    swatch: "purple" },
+    { name: "Unstoppables",   colour: "White",     swatch: "white" },
+    { name: "Dirty Swingers", colour: "Yellow",    swatch: "yellow" },
+    { name: "Bat Intentions", colour: "",          swatch: "" },
+    { name: "Trotters",       colour: "Gray",      swatch: "gray" },
+    { name: "I'd Hit That",   colour: "Camo",      swatch: "camo" },
+    { name: "McGlovins",      colour: "Teal",      swatch: "teal" },
+    { name: "Tough Glove",    colour: "Garnet",    swatch: "garnet" }
   ],
 
 
