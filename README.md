@@ -78,6 +78,7 @@ the logo. If you change the logo, ask for new versions of these too.)
 | File | What it is |
 | --- | --- |
 | index.html, schedule.html, standings.html, teams.html, info.html | The 5 pages (no need to edit) |
+| schedule.pdf | Full season schedule, linked from the Schedule page. |
 | rules.pdf, constitution.pdf | League rules and constitution, linked from the League Information page. To update one, upload a new PDF with the same name. |
 | config.js | **Your settings** |
 | style.css | Look and colours (colours are at the top) |
