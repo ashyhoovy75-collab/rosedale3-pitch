@@ -16,7 +16,6 @@
   /* =========================== HOME =========================== */
   function home() {
     var first = L.configDayKey(C.firstGameDay), lastReg = L.configDayKey(C.lastRegularSeasonDay);
-    var divNames = (C.divisions || []).join(", ") || "To be announced";
     main.innerHTML =
       '<section class="hero"><div class="wrap hero-inner">' +
         '<div class="hero-text">' +
@@ -31,8 +30,6 @@
       '<section class="wrap section"><h2 class="visually-hidden">Key facts</h2><dl class="facts">' +
         fact("Season", esc(C.seasonName) + '<span class="fact-sub">' + esc(Site.shortDate(C.firstGameDay)) + " &ndash; " + esc(Site.shortDate(C.lastRegularSeasonDay)) + "</span>") +
         fact("Location", esc(C.locationSummary) + '<span class="fact-sub">' + esc((C.venues || []).map(function (v) { return v.name; }).join(" · ")) + "</span>") +
-        fact("Divisions", esc(divNames)) +
-        fact("Registration deadline", esc(Site.shortDate(C.registrationDeadline))) +
       "</dl>" +
       '<div class="actions"><a class="btn btn-primary" href="register.html">Register a team</a></div></section>' +
 
