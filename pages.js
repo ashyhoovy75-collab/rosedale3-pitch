@@ -300,6 +300,16 @@
       return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
     }
     function items(list) { return (list || []).filter(function (x) { return String(x).trim(); }); }
+    // Constitution: a PDF to open or download, plus any typed paragraphs.
+    function constitutionBlock() {
+      var file = String(C.constitutionFile || "").trim();
+      var text = constitution.map(function (r) { return "<p>" + esc(r) + "</p>"; }).join("");
+      if (!file) return text || soon("league constitution");
+      return '<div class="card doc-card"><h3 class="h3">Rosedale 3 Pitch Council Agreement</h3>' +
+        '<p>The league constitution, as a PDF.</p><div class="actions">' +
+        '<a class="btn btn-primary btn-sm" href="' + esc(file) + '" target="_blank" rel="noopener">Read the constitution</a>' +
+        '<a class="btn btn-outline btn-sm" href="' + esc(file) + '" download>Download PDF</a></div></div>' + text;
+    }
     function soon(what) { return '<div class="card soon"><p><strong>Coming soon.</strong> The ' + what + " will be posted here.</p></div>"; }
     var rules = items(C.rules), constitution = items(C.constitution), fees = items(C.teamFees);
     main.innerHTML = '<div class="wrap section">' + sectionHead("Good to know", "League Information", "") +
@@ -308,7 +318,7 @@
       '<section id="rules" class="section-tight"><h2 class="h2">Rules</h2>' +
         (rules.length ? '<ol class="rules">' + rules.map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</ol>" : soon("league rules")) + "</section>" +
       '<section id="constitution" class="section-tight"><h2 class="h2">Constitution</h2>' +
-        (constitution.length ? constitution.map(function (r) { return "<p>" + esc(r) + "</p>"; }).join("") : soon("league constitution")) + "</section>" +
+        constitutionBlock() + "</section>" +
       '<section id="fees" class="section-tight"><h2 class="h2">Team fees</h2>' +
         (fees.length ? '<ul class="rules">' + fees.map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</ul>" : soon("team fees")) + "</section>" +
       '<section id="diamonds" class="section-tight"><h2 class="h2">Diamonds</h2><ul class="venue-grid">' +

@@ -303,7 +303,9 @@ main > .section:first-child, main > .wrap.section { padding-top: 2.5rem; }
 .steps li::marker, .rules li::marker { font-weight: 800; color: var(--brand); }
 .form-frame { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--page); }
 .form-frame iframe { display: block; width: 100%; height: 1400px; border: 0; }
-.soon { max-width: 40rem; }
+.soon, .doc-card { max-width: 40rem; }
+.doc-card p { margin-top: 0.35rem; color: var(--accent-text); }
+.doc-card .actions { margin-top: 1rem; }
 .soon .btn { overflow-wrap: anywhere; }
 
 .venue-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }

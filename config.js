@@ -175,6 +175,10 @@ window.LEAGUE = {
   // League constitution (each line is shown as its own paragraph).
   constitution: [],
 
+  // The constitution as a PDF file in the same folder as the website.
+  // Visitors get buttons to open or download it. Leave empty ("") to hide them.
+  constitutionFile: "constitution.pdf",
+
   // Team fees (shown as a list), e.g. "$500 per team, due by May 1".
   teamFees: [],
 
