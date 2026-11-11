@@ -70,12 +70,12 @@ Fill in the **Playoffs** tab: `Division | Round | Game | Team A | Score A | Team
 ## 7. Change a setting
 
 Open **config.js**. Every setting has a note above it. Change only the text inside the quote marks and
-keep the commas. Dates are written `YYYY-MM-DD`. Things you'll likely change: fee, deadline, registration
-form link, divisions, maximum teams, diamond addresses, rules, and FAQ.
+keep the commas. Dates are written `YYYY-MM-DD`. Things you'll likely change: the team list, rules, constitution,
+team fees, diamond addresses and FAQ.
 
-To replace the logo, upload your picture (e.g. `logo.png`) and change `logo: "logo.svg"` to `logo: "logo.png"`.
+The logo is `logo.png`. To replace it, upload a new picture with the same name (or a new name, and change `logo:` in config.js to match).
 (The small icons `favicon.png`, `apple-touch-icon.png` and the sharing picture `og-image.png` are made from
-the placeholder logo; replace them with versions of your logo when you have one.)
+the logo. If you change the logo, ask for new versions of these too.)
 
 ## What's in this folder
 
@@ -85,6 +85,6 @@ the placeholder logo; replace them with versions of your logo when you have one.
 | config.js | **Your settings** |
 | style.css | Look and colours (colours are at the top) |
 | site.js, league.js, pages.js | The workings (no need to edit) |
-| logo.svg, favicon.png, apple-touch-icon.png, og-image.png | Placeholder logo and icons |
+| logo.png, favicon.png, apple-touch-icon.png, og-image.png | League logo and icons made from it |
 
 No cookies, ads, trackers or analytics.
