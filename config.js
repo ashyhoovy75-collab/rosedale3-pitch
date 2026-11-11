@@ -31,7 +31,7 @@ window.LEAGUE = {
   // type its exact file name here (e.g. "logo.png").
   logo: "logo.png",
 
-  // Email address for questions and registration.
+  // Email address for questions.
   contactEmail: "r3pconvenor@gmail.com",
 
 
@@ -44,8 +44,6 @@ window.LEAGUE = {
   // playoff games: they don't count in the standings and feed the bracket.
   lastRegularSeasonDay: "2027-09-10",
 
-  // Last day to register a team.
-  registrationDeadline: "2027-05-01",
 
 
   // ---------- Your Google Sheet ----------
@@ -105,41 +103,6 @@ window.LEAGUE = {
     "McGlovins",
     "Tough Glove"
   ],
-
-
-  // ---------- Registration ----------
-
-  // Your registration Google Form link. Paste either the normal link
-  // (ending in /viewform) or the embed link (ending in ?embedded=true).
-  // Leave empty ("") to show "Registration opens soon".
-  registrationFormLink: "",
-
-  // Team fee, shown on the Register page.
-  teamFee: "$[fee] per team",
-
-  // Who can play, shown on the Register page.
-  whoCanPlay: "Adults 18 and over. Co-ed and open teams welcome.",
-
-  // Steps to register, shown in order on the Register page.
-  registrationSteps: [
-    "Pick a team name and a team captain.",
-    "Fill in the registration form below (one form per team).",
-    "Pay the team fee. We'll email the captain how to pay.",
-    "Once we receive payment, your team shows as Confirmed on the Teams page."
-  ],
-
-
-  // ---------- Divisions ----------
-
-  // Division names, in the order you want them shown.
-  // They must match the "Division" column of your Teams tab
-  // (capital letters and extra spaces don't matter).
-  // With only one division, the division buttons are hidden.
-  divisions: ["Competitive", "Recreational"],
-
-  // Maximum number of teams per division. When a division is full, the Teams
-  // page says new registrations go on a waitlist.
-  maxTeamsPerDivision: 8,
 
 
   // ---------- Diamonds (where games are played) ----------

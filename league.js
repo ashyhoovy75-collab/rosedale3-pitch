@@ -273,7 +273,7 @@
       if (s.homePts > s.awayPts) { h.W++; a.L++; } else { a.W++; h.L++; }
     });
 
-    var divs = divisionList(config, teams), groups = [];
+    var groups = [];
     var allKeys = Object.keys(recs);
     function build(division, members) {
       members.forEach(function (r) {
@@ -292,12 +292,9 @@
       });
       groups.push({ division: division, rows: members });
     }
-    divs.forEach(function (d) {
-      var members = allKeys.map(function (k) { return recs[k]; }).filter(function (r) { return r.divKey === d.key; });
-      if (members.length) build(d, members);
-    });
-    var others = allKeys.map(function (k) { return recs[k]; }).filter(function (r) { return !r.divKey; });
-    if (others.length) build({ name: divs.length ? "Other teams" : "Standings", key: "" }, others);
+    // The league has no divisions: every team goes in one table.
+    var all = allKeys.map(function (k) { return recs[k]; });
+    if (all.length) build({ name: "Standings", key: "" }, all);
     return groups;
   }
 

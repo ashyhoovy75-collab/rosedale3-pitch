@@ -49,18 +49,15 @@ Rules the site follows:
 Either submit the form again for the same game (same date, home and away team): the **newest** answer
 (lowest row) replaces the old one. Or open the Scores tab and correct or delete the wrong row.
 
-## 5. Add a team / mark a team paid / waitlist
+## 5. Add or rename a team
 
-In the **Teams** tab add a row: `Team | Division | Status`.
-- Status **Paid** = green "Confirmed" badge.
-- Status empty (or anything else) = amber "Registered" badge.
-- Status **Waitlist** = not shown by name, only counted as "Waitlist: 2 teams".
-
-The Division must match one of the divisions in config.js.
+The **Teams** page shows the `teams` list in **config.js**: add, remove or rename teams there.
+Team names in the Games and Scores tabs must match those names (capital letters and extra spaces don't matter).
+The **Teams** tab of the sheet only needs a `Team` column.
 
 ## 6. Set up the playoffs
 
-Fill in the **Playoffs** tab: `Division | Round | Game | Team A | Score A | Team B | Score B`.
+Fill in the **Playoffs** tab: `Round | Game | Team A | Score A | Team B | Score B`.
 - One row per game. Rounds appear left to right in the order they first appear (e.g. Semifinal, then Final).
 - Number games 1, 2, 3… in each round. Games 1 and 2 feed Game 1 of the next round, 3 and 4 feed Game 2, and so on.
 - Leave the scores empty: the site uses the score form answers between those two teams. Type Score A and
@@ -81,7 +78,8 @@ the logo. If you change the logo, ask for new versions of these too.)
 
 | File | What it is |
 | --- | --- |
-| index.html, schedule.html, standings.html, teams.html, register.html, info.html | The 6 pages (no need to edit) |
+| index.html, schedule.html, standings.html, teams.html, info.html | The 5 pages (no need to edit) |
+| constitution.pdf | The league constitution, linked from the League Information page |
 | config.js | **Your settings** |
 | style.css | Look and colours (colours are at the top) |
 | site.js, league.js, pages.js | The workings (no need to edit) |
