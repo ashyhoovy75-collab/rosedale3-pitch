@@ -331,26 +331,21 @@ main > .section:first-child, main > .wrap.section { padding-top: 2.5rem; }
 .soon .btn { overflow-wrap: anywhere; }
 
 .team-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.75rem; }
-.team-card { display: flex; align-items: center; gap: 0.9rem; --team: var(--line-strong); border-left: 6px solid var(--team); }
-.team-name { display: block; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
-.team-colour { display: block; margin-top: 0.15rem; font-size: 0.9rem; color: var(--accent-text); }
-.swatch { flex: none; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--team); border: 1px solid var(--line-strong); }
+.team-card { --team: var(--line-strong); position: relative; overflow: hidden; padding-left: 2rem; }
+.team-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--team); }
+.team-name { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
 .swatch-red { --team: var(--team-red); }
 .swatch-dark-blue { --team: var(--team-dark-blue); }
 .swatch-black { --team: var(--team-black); }
 .swatch-purple { --team: var(--team-purple); }
-.swatch-white { --team: var(--team-white); border-left-color: var(--line-strong); }
+.swatch-white { --team: var(--team-white); }
+.swatch-white { box-shadow: inset 0 0 0 1px var(--line-strong); }
+.swatch-white::before { box-shadow: inset -1px 0 0 var(--line-strong), inset 1px 0 0 var(--line-strong), inset 0 1px 0 var(--line-strong), inset 0 -1px 0 var(--line-strong); }
 .swatch-yellow { --team: var(--team-yellow); }
 .swatch-gray { --team: var(--team-gray); }
 .swatch-teal { --team: var(--team-teal); }
 .swatch-garnet { --team: var(--team-garnet); }
-.swatch-camo { --team: var(--team-camo-2); }
-.swatch-camo .swatch { background:
-  radial-gradient(circle at 30% 30%, var(--team-camo-1) 0 22%, transparent 23%),
-  radial-gradient(circle at 70% 60%, var(--team-camo-4) 0 20%, transparent 21%),
-  radial-gradient(circle at 40% 80%, var(--team-camo-3) 0 18%, transparent 19%),
-  var(--team-camo-2); }
-.swatch-none .swatch { background: transparent; border: 2px dashed var(--line-strong); }
+.swatch-camo::before { background: linear-gradient(to bottom, var(--team-camo-1) 0 22%, var(--team-camo-3) 22% 40%, var(--team-camo-4) 40% 58%, var(--team-camo-2) 58% 78%, var(--team-camo-1) 78% 100%); }
 .toc { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .toc a { background: var(--card); color: var(--ink); text-decoration: none; font-weight: 700; padding: 0.45rem 1rem; border-radius: 999px; font-size: 0.9rem; }
 .toc a:hover { background: var(--card-hover); }

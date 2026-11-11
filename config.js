@@ -96,10 +96,10 @@ window.LEAGUE = {
   // The teams shown on the Teams page, in the order you want them listed.
   // For each team:
   //   name:   the team name
-  //   colour: the colour name shown under the team ("" if not decided yet)
-  //   swatch: which colour dot to show. Choose one of:
+  //   colour: the team colour, for your reference (not shown on the site)
+  //   swatch: the colour of the left edge of the team's box. Choose one of:
   //           red, dark-blue, black, purple, white, yellow, gray, camo, teal, garnet
-  //           ("" shows an empty dot). The colours themselves are at the top of style.css.
+  //           ("" shows a plain grey edge). The colours themselves are at the top of style.css.
   // One team per line, with a comma after every line but the last.
   teams: [
     { name: "Red",            colour: "Red",       swatch: "red" },
