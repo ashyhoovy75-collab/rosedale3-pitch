@@ -16,7 +16,6 @@
   /* =========================== HOME =========================== */
   function home() {
     var first = L.configDayKey(C.firstGameDay), lastReg = L.configDayKey(C.lastRegularSeasonDay);
-    var divNames = (C.divisions || []).join(", ") || "To be announced";
     main.innerHTML =
       '<section class="hero"><div class="wrap hero-inner">' +
         '<div class="hero-text">' +
@@ -31,10 +30,7 @@
       '<section class="wrap section"><h2 class="visually-hidden">Key facts</h2><dl class="facts">' +
         fact("Season", esc(C.seasonName) + '<span class="fact-sub">' + esc(Site.shortDate(C.firstGameDay)) + " &ndash; " + esc(Site.shortDate(C.lastRegularSeasonDay)) + "</span>") +
         fact("Location", esc(C.locationSummary) + '<span class="fact-sub">' + esc((C.venues || []).map(function (v) { return v.name; }).join(" · ")) + "</span>") +
-        fact("Divisions", esc(divNames)) +
-        fact("Registration deadline", esc(Site.shortDate(C.registrationDeadline))) +
-      "</dl>" +
-      '<div class="actions"><a class="btn btn-primary" href="register.html">Register a team</a></div></section>' +
+      "</dl></section>" +
 
       '<section class="wrap section"><p class="eyebrow">Explore</p><h2 class="h2">Everything about the league</h2><ul class="card-grid">' +
         Site.pages.filter(function (p) { return p.file !== "index.html"; }).map(function (p) {
@@ -77,7 +73,7 @@
       "Scores appear here as soon as they're submitted. Times and diamonds can change, so check before you go.") +
       scoreNotice() +
       '<div id="controls" class="controls"></div><div id="out" aria-live="polite"><p class="loading">Loading the schedule&hellip;</p></div></div>';
-    var state = { div: "all", team: "", scrolled: false };
+    var state = { team: "", scrolled: false };
 
     // The "IMPORTANT" box under the title. Email addresses become links.
     function scoreNotice() {
@@ -104,7 +100,6 @@
       var match = L.matchScores(games, scores);
 
       function display(name, key) { return idx[key] ? idx[key].name : name; }
-      function divOf(key) { return idx[key] ? idx[key].divKey : ""; }
 
       // Build date groups in sheet order.
       var groups = [], byKey = {};
@@ -126,7 +121,7 @@
       });
 
       // Controls: "Show only my team".
-      var teamChoices = teams.filter(function (t) { return t.state !== "waitlist" && (state.div === "all" || t.divKey === state.div); });
+      var teamChoices = teams.filter(function (t) { return t.state !== "waitlist"; });
       if (state.team && !teamChoices.some(function (t) { return t.key === state.team; })) state.team = "";
       var ctrl = "";
       if (teamChoices.length) {
@@ -142,7 +137,6 @@
       function keep(r) {
         var h = r.game ? r.game.homeKey : r.score.homeKey, a = r.game ? r.game.awayKey : r.score.awayKey;
         if (state.team) return h === state.team || a === state.team;
-        if (state.div !== "all") return divOf(h) === state.div || divOf(a) === state.div;
         return true;
       }
 
@@ -203,8 +197,8 @@
       else {
         var groups = L.standings(C, teams, scores);
         out.innerHTML = (groups.length ? groups.map(function (g) {
-          return '<section class="division"><h2 class="h3">' + esc(g.division.name) + "</h2>" +
-            '<div class="table-wrap" tabindex="0" role="region" aria-label="' + esc(g.division.name) + ' standings"><table class="table standings">' +
+          return '<section class="division">' +
+            '<div class="table-wrap" tabindex="0" role="region" aria-label="Standings"><table class="table standings">' +
             '<thead><tr><th scope="col" class="rank">#</th><th scope="col">Team</th>' +
             th("GP", "Games played") + th("W", "Wins") + th("L", "Losses") + th("PCT", "Winning percentage") + th("GB", "Games behind") +
             th("PF", "Runs scored") + th("PA", "Runs allowed") + th("DIFF", "Run differential") + "</tr></thead><tbody>" +
@@ -273,26 +267,6 @@
       }).join("") + "</ul>" : Site.notice("Teams coming soon.")) + "</div>";
   }
 
-  /* =========================== REGISTER =========================== */
-  function registerPage() {
-    var form = L.formLinks(C.registrationFormLink);
-    main.innerHTML = '<div class="wrap section">' + sectionHead(C.seasonName, "Register a team",
-      "Get your team on the field for the " + esc(C.seasonName) + " season.") +
-      '<dl class="facts">' +
-        '<div class="fact"><dt>Team fee</dt><dd>' + esc(C.teamFee) + "</dd></div>" +
-        '<div class="fact"><dt>Deadline</dt><dd>' + esc(Site.niceDate(C.registrationDeadline)) + "</dd></div>" +
-        '<div class="fact fact-wide"><dt>Who can play</dt><dd class="fact-text">' + esc(C.whoCanPlay) + "</dd></div>" +
-      "</dl>" +
-      '<section class="section-tight"><h2 class="h3">How to register</h2><ol class="steps">' +
-        (C.registrationSteps || []).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol></section>" +
-      '<section class="section-tight"><h2 class="h3">Registration form</h2>' +
-      (form ? '<div class="form-frame"><iframe src="' + esc(form.embed) + '" title="Team registration form" loading="lazy"></iframe></div>' +
-        '<p><a href="' + esc(form.open) + '" target="_blank" rel="noopener">Open the form in a new tab</a></p>'
-        : '<div class="card soon"><h3 class="h3">Registration opens soon</h3><p>Want a spot? Email us and we\'ll let you know as soon as the form is live.</p>' +
-          '<a class="btn btn-primary" href="' + Site.mailto(C.name + " registration") + '">Email ' + esc(C.contactEmail) + "</a></div>") +
-      "</section></div>";
-  }
-
   /* =========================== INFO =========================== */
   function infoPage() {
     function mapLink(v) {
@@ -339,6 +313,6 @@
         '<p>Questions or concerns? Email <a href="' + Site.mailto(C.name) + '">' + esc(C.contactEmail) + "</a>.</p></section></div>";
   }
 
-  var routes = { home: home, schedule: schedule, standings: standingsPage, teams: teamsPage, register: registerPage, info: infoPage };
+  var routes = { home: home, schedule: schedule, standings: standingsPage, teams: teamsPage, info: infoPage };
   if (routes[page]) routes[page]();
 })();
