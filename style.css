@@ -307,6 +307,7 @@ main > .section:first-child, main > .wrap.section { padding-top: 2.5rem; }
 .doc-card p { margin-top: 0.35rem; color: var(--accent-text); }
 .doc-card .actions { margin-top: 1rem; }
 .tiebreaks h3 { margin-top: 1.25rem; }
+.schedule-pdf { margin: 1.5rem 0; }
 .city-policy { max-width: 46rem; margin: 1.5rem 0; border-left: 4px solid var(--brand); }
 .city-policy p { margin-top: 0.6rem; }
 .city-policy .city-quote { font-weight: 600; }

@@ -71,10 +71,19 @@
   function schedule() {
     main.innerHTML = '<div class="wrap section">' + sectionHead(C.seasonName, "Schedule & scores",
       "Scores appear here as soon as they're submitted. Times and diamonds can change, so check before you go.") +
-      scoreNotice() +
+      scoreNotice() + schedulePdf() +
       '<div id="controls" class="controls"></div><div id="out" aria-live="polite"><p class="loading">Loading the schedule&hellip;</p></div></div>';
     var state = { team: "", scrolled: false };
 
+    // The full schedule as a PDF, with "Read" and "Download" buttons.
+    function schedulePdf() {
+      var file = String(C.scheduleFile || "").trim();
+      if (!file) return "";
+      return '<div class="card doc-card schedule-pdf"><h3 class="h3">' + esc(C.seasonName) + ' schedule (PDF)</h3>' +
+        '<p>The full season schedule in one printable file.</p><div class="actions">' +
+        '<a class="btn btn-primary btn-sm" href="' + esc(file) + '" target="_blank" rel="noopener">Read the schedule</a>' +
+        '<a class="btn btn-outline btn-sm" href="' + esc(file) + '" download>Download PDF</a></div></div>';
+    }
     // The "IMPORTANT" box under the title. Email addresses become links.
     function scoreNotice() {
       var text = String(C.scoreNotice || "").trim();
