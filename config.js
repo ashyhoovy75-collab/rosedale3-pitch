@@ -94,8 +94,7 @@ window.LEAGUE = {
   // The teams shown on the Teams page, in the order you want them listed.
   // One team per line, in quote marks, with a comma after every line but the last.
   teams: [
-    "Red",
-    "Dirt Dusters",
+    "Red Dirt Dusters",
     "Rampage",
     "Choke 'N' Poke",
     "Unstoppables",
