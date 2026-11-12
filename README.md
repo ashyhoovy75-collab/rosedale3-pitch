@@ -49,6 +49,18 @@ Rules the site follows:
 Either submit the form again for the same game (same date, home and away team): the **newest** answer
 (lowest row) replaces the old one. Or open the Scores tab and correct or delete the wrong row.
 
+## Post breaking news (rain outs, weather, derby)
+
+Open **config.js**, find `breakingNews`, and add a line between the square brackets, for example:
+
+```
+breakingNews: [
+  { date: "2027-06-04", title: "Rain out", text: "Tonight's games are cancelled." },
+],
+```
+
+It appears at the top of the home page, newest first. Delete the line when it's no longer needed.
+
 ## 5. Add or rename a team
 
 The **Teams** page shows the `teams` list in **config.js**: add, remove or rename teams there.
@@ -77,7 +89,7 @@ the logo. If you change the logo, ask for new versions of these too.)
 
 | File | What it is |
 | --- | --- |
-| index.html, schedule.html, standings.html, teams.html, info.html | The 5 pages (no need to edit) |
+| index.html, schedule.html, standings.html, teams.html, info.html, banquet.html | The 6 pages (no need to edit) |
 | schedule.pdf | Full season schedule, linked from the Schedule page. |
 | rules.pdf, constitution.pdf | League rules and constitution, linked from the League Information page. To update one, upload a new PDF with the same name. |
 | config.js | **Your settings** |

@@ -14,9 +14,26 @@
   }
 
   /* =========================== HOME =========================== */
+  // "Breaking news" box at the very top of the home page.
+  function breakingNews() {
+    var items = (C.breakingNews || []).filter(function (n) { return n && (String(n.title || "").trim() || String(n.text || "").trim()); });
+    items = items.map(function (n, i) { return { n: n, i: i, day: L.configDayKey(n.date) || "" }; })
+      .sort(function (a, b) { return a.day === b.day ? a.i - b.i : (a.day < b.day ? 1 : -1); });
+    var empty = String(C.breakingNewsEmpty || "").trim();
+    if (!items.length && !empty) return "";
+    var body = items.length ? '<ul class="news-list">' + items.map(function (x) {
+      var n = x.n, d = String(n.date || "").trim();
+      return "<li>" + (d ? '<span class="news-date">' + esc(Site.shortDate(d)) + "</span>" : "") +
+        (String(n.title || "").trim() ? '<strong class="news-title">' + esc(n.title) + "</strong>" : "") +
+        (String(n.text || "").trim() ? '<span class="news-text">' + esc(n.text) + "</span>" : "") + "</li>";
+    }).join("") + "</ul>" : '<p class="news-empty">' + esc(empty) + "</p>";
+    return '<section class="news" aria-labelledby="news-h"><div class="wrap news-inner">' +
+      '<h2 id="news-h" class="news-label">Breaking news</h2>' + body + "</div></section>";
+  }
+
   function home() {
     var first = L.configDayKey(C.firstGameDay), lastReg = L.configDayKey(C.lastRegularSeasonDay);
-    main.innerHTML =
+    main.innerHTML = breakingNews() +
       '<section class="hero"><div class="wrap hero-inner">' +
         '<div class="hero-text">' +
           '<p class="eyebrow">' + esc(C.seasonName) + " &middot; " + esc(C.locationSummary) + "</p>" +
@@ -272,7 +289,7 @@
     var list = (C.teams || []).map(function (t) {
       return typeof t === "string" ? { name: t } : (t || {});
     }).filter(function (t) { return String(t.name || "").trim(); });
-    var SWATCHES = ["red", "dark-blue", "black", "purple", "white", "yellow", "gray", "camo", "teal", "garnet"];
+    var SWATCHES = ["red", "dark-blue", "black", "purple", "white", "yellow", "orange", "gray", "camo", "teal", "garnet"];
     main.innerHTML = '<div class="wrap section">' + sectionHead(C.seasonName, "Teams",
       list.length ? plural(list.length, "team", "teams") + " this season." : "") +
       (list.length ? '<ul class="team-grid">' + list.map(function (t) {
@@ -280,6 +297,15 @@
         var swClass = SWATCHES.indexOf(sw) >= 0 ? " swatch-" + sw : " swatch-none";
         return '<li class="card team-card' + swClass + '"><span class="team-name">' + esc(t.name) + "</span></li>";
       }).join("") + "</ul>" : Site.notice("Teams coming soon.")) + "</div>";
+  }
+
+  /* =========================== BANQUET =========================== */
+  function banquetPage() {
+    var info = (C.banquetInfo || []).filter(function (x) { return String(x).trim(); });
+    main.innerHTML = '<div class="wrap section">' + sectionHead(C.seasonName, "Banquet", "") +
+      (info.length ? '<div class="card doc-card">' + info.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</div>"
+        : '<div class="card soon"><p><strong>Coming soon.</strong> ' + esc(C.banquetComingSoon || "Banquet information will be posted here.") + "</p></div>") +
+      "</div>";
   }
 
   /* =========================== INFO =========================== */
@@ -327,6 +353,6 @@
         '<p>Questions or concerns? Email <a href="' + Site.mailto(C.name) + '">' + esc(C.contactEmail) + "</a>.</p></section></div>";
   }
 
-  var routes = { home: home, schedule: schedule, standings: standingsPage, teams: teamsPage, info: infoPage };
+  var routes = { home: home, schedule: schedule, standings: standingsPage, teams: teamsPage, info: infoPage, banquet: banquetPage };
   if (routes[page]) routes[page]();
 })();
