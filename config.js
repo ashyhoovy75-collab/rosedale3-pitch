@@ -91,6 +91,29 @@ window.LEAGUE = {
   scoreNotice: "Both teams are required to send in their scores by 9pm on the following Monday. Failure to do so will result in a forfeiture of the game only to the team who did not call in their score. A team is permitted a maximum of 4 forfeitures over the course of the season. Any more than 4 forfeitures will result in that team being ineligible for the year end tournament. Pictures of scores are to be emailed to both Taylor DeCoste & Lindsay Poyton at tdecoste13@gmail.com & poyton05@hotmail.com or via Game Sheets WhatsApp Group.",
 
 
+  // ---------- Breaking news (top of the home page) ----------
+
+  // Rain outs, weather updates, home run derby news and so on.
+  // Add one line per update, newest first is not needed: the site sorts by date.
+  // date is yyyy-mm-dd. Remove old updates when they no longer matter.
+  // Example:
+  //   { date: "2027-06-04", title: "Rain out", text: "Tonight's games are cancelled. Make-up dates to follow." },
+  breakingNews: [
+  ],
+
+  // Shown in the Breaking news box when there are no updates.
+  // Leave empty ("") to hide the box when there is no news.
+  breakingNewsEmpty: "No updates right now. Rain outs, weather updates and league news will be posted here.",
+
+
+  // ---------- Banquet page ----------
+
+  // Banquet details (each line is shown as its own paragraph).
+  // While the list is empty [ ], the page shows banquetComingSoon.
+  banquetInfo: [],
+  banquetComingSoon: "Information about the banquet will become available at a later date.",
+
+
   // ---------- Teams ----------
 
   // The teams shown on the Teams page, in the order you want them listed.
@@ -98,7 +121,7 @@ window.LEAGUE = {
   //   name:   the team name
   //   colour: the team colour, for your reference (not shown on the site)
   //   swatch: the colour of the left edge of the team's box. Choose one of:
-  //           red, dark-blue, black, purple, white, yellow, gray, camo, teal, garnet
+  //           red, dark-blue, black, purple, white, yellow, orange, gray, camo, teal, garnet
   //           ("" shows a plain grey edge). The colours themselves are at the top of style.css.
   // One team per line, with a comma after every line but the last.
   teams: [
@@ -108,7 +131,7 @@ window.LEAGUE = {
     { name: "Choke 'N' Poke", colour: "Purple",    swatch: "purple" },
     { name: "Unstoppables",   colour: "White",     swatch: "white" },
     { name: "Dirty Swingers", colour: "Yellow",    swatch: "yellow" },
-    { name: "Bat Intentions", colour: "",          swatch: "" },
+    { name: "Bat Intentions", colour: "Orange",    swatch: "orange" },
     { name: "Trotters",       colour: "Gray",      swatch: "gray" },
     { name: "I'd Hit That",   colour: "Camo",      swatch: "camo" },
     { name: "McGlovins",      colour: "Teal",      swatch: "teal" },

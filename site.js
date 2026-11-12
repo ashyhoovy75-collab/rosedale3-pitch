@@ -12,7 +12,8 @@
     { file: "schedule.html", label: "Schedule", title: "Schedule & scores", blurb: "Every game, time and diamond, with final scores." },
     { file: "standings.html", label: "Standings", title: "Standings", blurb: "Wins, losses and the playoff bracket, updated automatically." },
     { file: "teams.html", label: "Teams", title: "Teams", blurb: "The teams playing this season." },
-    { file: "info.html", label: "League Information", title: "League Information", blurb: "About the league, rules, constitution, team fees and diamonds." }
+    { file: "info.html", label: "League Information", title: "League Information", blurb: "About the league, rules, constitution, team fees, tiebreaks and code of conduct." },
+    { file: "banquet.html", label: "Banquet", title: "Banquet", blurb: "The year-end banquet." }
   ];
 
   function currentFile() {
